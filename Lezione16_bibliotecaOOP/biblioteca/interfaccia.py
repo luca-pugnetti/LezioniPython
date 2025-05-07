@@ -85,6 +85,9 @@ class InterfacciaBiblioteca:
         self.bottone_rimuovi = tk.Button(self.frame_superiore, text="Rimuovi Libro", command=self.rimuovi_libro)
         self.bottone_rimuovi.pack(side=tk.LEFT, padx=5)
         
+        self.bottone_logout = tk.Button(self.frame_superiore, text="Log out", command=self.logout)
+        self.bottone_logout.pack(side=tk.RIGHT)
+        
         # Se l'utente è amministratore, mostra il pulsante per registrare nuovi utenti
         if self.utente_corrente["ruolo"] == "amministratore":
             self.bottone_registra_utente = tk.Button(self.frame_superiore, text="Registra Nuovo Utente", command=self.registra_utente)
@@ -192,4 +195,9 @@ class InterfacciaBiblioteca:
     def avvia_autosalvataggio(self):
         self.salva_dati()
         self.master.after(300000, self.avvia_autosalvataggio)
+        
+    def logout(self):
+        self.frame_principale.forget()
+        self.__init__(self.master, self.biblioteca)
+        
         
